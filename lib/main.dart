@@ -11,7 +11,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
       darkTheme: Themes.dark,
 
       themeMode:
-          ThemeSevices().loadThemeFromBox() ? ThemeMode.dark : ThemeMode.light,
+          ThemeServices.loadThemeFromBox() ? ThemeMode.dark : ThemeMode.light,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       home: const HomePage(),

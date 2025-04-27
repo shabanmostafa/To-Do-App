@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:to_do_app/services/theme_sevices.dart';
-import 'package:to_do_app/ui/pages/add_task_page.dart';
 import 'package:to_do_app/ui/size_config.dart';
-import 'package:to_do_app/ui/widgets/button.dart';
+import 'package:to_do_app/ui/widgets/add_date_picker.dart';
+import 'package:to_do_app/ui/widgets/add_task_bar.dart';
 import 'package:to_do_app/ui/widgets/custom_app_bar.dart';
-import 'package:to_do_app/ui/widgets/input_field.dart';
+import 'package:to_do_app/ui/widgets/no_tasks_yet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -23,7 +22,23 @@ class _HomePageState extends State<HomePage> {
       appBar: appBar(
         IconButton(
           onPressed: () {
-            ThemeSevices().switchTheme();
+            ThemeServices.switchTheme();
+
+            Get.isDarkMode
+                ? Get.snackbar(
+                  'Light Mode',
+                  'Switched to light mode',
+                  backgroundColor: Colors.white,
+                  colorText: Colors.black,
+                  icon: const Icon(Icons.wb_sunny_outlined),
+                )
+                : Get.snackbar(
+                  'Dark Mode',
+                  'Switched to dark mode',
+                  backgroundColor: Colors.black,
+                  colorText: Colors.white,
+                  icon: const Icon(Icons.nightlight_round),
+                );
           },
           icon:
               Get.isDarkMode
@@ -33,14 +48,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: [
-          InputField(title: 'Title', hint: 'Enter your title'),
-          const SizedBox(height: 20),
-          MyButton(
-            label: 'Add Task',
-            onTap: () {
-              Get.to(AddTaskPage());
-            },
-          ),
+          AddTaskBar(),
+          AddDatePicker(),
+          Expanded(child: NoTasksYet()),
         ],
       ),
     );

@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
+import 'package:to_do_app/models/task.dart';
 
 class TaskController extends GetxController {
+  List<Task> taskList = <Task>[].obs;
   void addTask({
     required String title,
     required String note,
@@ -11,4 +13,6 @@ class TaskController extends GetxController {
     required String repeat,
     required int color,
   }) {}
+
+  void getTasks() {}
 }
